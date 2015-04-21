@@ -6,6 +6,7 @@ See slides.pptx for the slides.
 Clone this repository and run the following commands to start a Web server:
 
 $ cd webgl
+
 $ python -m SimpleHTTPServer
 
 Point a Web browser to http://localhost:8000/ to see the low-level WebGL and
