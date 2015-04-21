@@ -62,7 +62,7 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 1;
+				camera.position.z = 100;
 
 				// scene
 
@@ -91,9 +91,9 @@
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 				var loader = new THREE.OBJMTLLoader();
-				loader.load( 'obj/gingerbread/gingerbread.obj', 'obj/gingerbread/gingerbread.obj.mtl', function ( object ) {
+				loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
 
-					//object.position.y = - 80;
+					object.position.y = - 80;
 					scene.add( object );
 
 				}, onProgress, onError );
@@ -156,4 +156,3 @@
 
 	</body>
 </html>
-
