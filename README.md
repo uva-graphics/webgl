@@ -1,5 +1,5 @@
 # webgl
-WebGL Tutorial
+WebGL Tutorial with Powerpoint Slides
 
 See slides.pptx for the slides.
 
