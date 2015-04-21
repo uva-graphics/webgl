@@ -123,33 +123,10 @@
 				//                          face, we set it to 'false'.
 				var pyramidGeometry = new THREE.CylinderGeometry(0, 1.5, 1.5, 4, false);
 
-				// Coloring the faces with vertex colors is a bit tricky, but allows us to see how to
-				// loop through the faces and check whether they have three or four vertices.
-				// With a simple 'for'-loop we run through all faces, which are accessed by their index.
-				// The 'instanceof' operator gives the possibility to check, whether the current face is
-				// a THREE.Face4 or THREE.Face3. Depending on its object type, we set three or four
-				// vertex colors. For THREE.Face4 we switch the colors of vertex 1 and 2 for every
-				// second face because we want the lower vertices having the same colors as the
-				// neighbour face. Vertex 0 and 3 are the upper vertices, which are always red.
-				// If WebGL isn't supported and the canvas renderer is used, it ignores the vertex
-				// colors. They are only supported by the WebGL renderer (current release of
-				// Three.js: 49).
 				for(i = 0; i < pyramidGeometry.faces.length; i++){
-					if(pyramidGeometry.faces[i] instanceof THREE.Face4){
-						pyramidGeometry.faces[i].vertexColors[0] = new THREE.Color(0xFF0000);
-						if((i % 2) == 0){
-							pyramidGeometry.faces[i].vertexColors[1] = new THREE.Color(0x00FF00);
-							pyramidGeometry.faces[i].vertexColors[2] = new THREE.Color(0x0000FF);
-						} else {
-							pyramidGeometry.faces[i].vertexColors[1] = new THREE.Color(0x0000FF);
-							pyramidGeometry.faces[i].vertexColors[2] = new THREE.Color(0x00FF00);
-						}
-						pyramidGeometry.faces[i].vertexColors[3] = new THREE.Color(0xFF0000);
-					} else {
-						pyramidGeometry.faces[i].vertexColors[0] = new THREE.Color(0xFF0000);
-						pyramidGeometry.faces[i].vertexColors[1] = new THREE.Color(0x00FF00);
-						pyramidGeometry.faces[i].vertexColors[2] = new THREE.Color(0x0000FF);
-					}
+                    pyramidGeometry.faces[i].vertexColors[0] = new THREE.Color(0xFF0000);
+                    pyramidGeometry.faces[i].vertexColors[1] = new THREE.Color(0x00FF00);
+                    pyramidGeometry.faces[i].vertexColors[2] = new THREE.Color(0x0000FF);
 				}
 
 				// To activate the vertex color, we have to set 'vertexColors' attribute to
