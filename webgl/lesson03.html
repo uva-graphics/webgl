@@ -16,9 +16,12 @@ try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag
     precision mediump float;
 
     varying vec4 vColor;
+    varying vec4 vPosition;
+    uniform float currentTime;
 
     void main(void) {
-        gl_FragColor = vColor;
+        gl_FragColor = vColor;          // Ordinary colors
+        // gl_FragColor = vColor + cos(vPosition*10.0) + tan(vPosition) + cos(currentTime/100.0);   // Uncomment to make dancing colors!
     }
 </script>
 
@@ -28,11 +31,13 @@ try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag
 
     uniform mat4 uMVMatrix;
     uniform mat4 uPMatrix;
-
+    
     varying vec4 vColor;
-
+    varying vec4 vPosition;
+    
     void main(void) {
         gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vPosition = vec4(aVertexPosition.x, aVertexPosition.y, aVertexPosition.z, 1.0);
         vColor = aVertexColor;
     }
 </script>
@@ -114,6 +119,7 @@ try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag
         shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
         gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
 
+        shaderProgram.currentTime = gl.getUniformLocation(shaderProgram, "currentTime");
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
     }
@@ -228,6 +234,7 @@ try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag
         gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
         mvPopMatrix();
 
+        gl.uniform1f(shaderProgram.currentTime, lastTime % 1e6);
 
         mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
 
