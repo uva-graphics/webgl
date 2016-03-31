@@ -4,11 +4,6 @@
 <title>Learning WebGL &mdash; lesson 3</title>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 
-<script type="text/javascript">
-//<![CDATA[
-try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"a0728b28a0627b74fe3113b3a0380db5",petok:"87bfb8be323b87623c1eda3a44133a5e02524bec-1429042136-1800",zone:"learningwebgl.com",rocket:"0",apps:{}}];CloudFlare.push({"apps":{"ape":"b0ffefdee3246c142b8673efc0c7a2f0"}});!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=7e13c32551/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
-//]]>
-</script>
 <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
 
@@ -21,7 +16,8 @@ try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag
 
     void main(void) {
         gl_FragColor = vColor;          // Ordinary colors
-        // gl_FragColor = vColor + cos(vPosition*10.0) + tan(vPosition) + cos(currentTime/100.0);   // Uncomment to make dancing colors!
+        //gl_FragColor = vec4(cos(vPosition.x*10.0+currentTime/100.0), sin(vPosition.y*10.0), tan(currentTime/100.0), 1.0); // Uncomment to make dancing colors version 1.
+        //gl_FragColor = vColor + cos(vPosition*10.0) + tan(vPosition) + cos(currentTime/100.0) + step(vPosition, cos(vPosition));   // Uncomment to make dancing colors version 2.
     }
 </script>
 
